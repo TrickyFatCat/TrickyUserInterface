@@ -3,16 +3,26 @@
 
 #include "PauseMenuWidget.h"
 
+#include "ButtonWidget.h"
 #include "TransitionScreenWidget.h"
 #include "Kismet/GameplayStatics.h"
 
 void UPauseMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
+
+	auto BindButtonEvent = [&](UButtonWidget* ButtonWidget)
+	{
+		ButtonWidget->OnButtonClick.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
+	};
+
+	BindButtonEvent(ResumeButton);
+	BindButtonEvent(RestartButton);
+	BindButtonEvent(QuitButton);
+	TransitionScreenWidget->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
 }
 
-
-void UPauseMenuWidget::ActivateTransition_Implementation(UButtonWidget* Button)
+void UPauseMenuWidget::OnButtonClick_Implementation(UButtonWidget* Button)
 {
 	if (Button == ResumeButton)
 	{

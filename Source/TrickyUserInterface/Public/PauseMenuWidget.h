@@ -36,9 +36,9 @@ protected:
 	UTransitionScreenWidget* TransitionScreenWidget = nullptr;
 
 	UFUNCTION(BlueprintNativeEvent, Category="PauseMenu")
-	void ActivateTransition(UButtonWidget* Button);
+	void OnButtonClick(UButtonWidget* Button);
 
-	virtual void ActivateTransition_Implementation(UButtonWidget* Button);
+	virtual void OnButtonClick_Implementation(UButtonWidget* Button);
 
 	UFUNCTION(BlueprintNativeEvent, Category="PauseMenu")
 	void Restart();
