@@ -13,5 +13,5 @@ void UButtonWidget::NativeConstruct()
 
 void UButtonWidget::OnButtonClicked()
 {
-	OnClicked.Broadcast(this);
+	OnButtonClick.Broadcast(this);
 }

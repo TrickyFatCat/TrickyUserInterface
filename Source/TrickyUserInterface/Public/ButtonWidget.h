@@ -8,7 +8,7 @@
 
 class UButton;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnClickSignature, class UButtonWidget*, Button);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnButtonClickSignature, class UButtonWidget*, Button);
 /**
  * 
  */
@@ -19,7 +19,7 @@ class TRICKYUSERINTERFACE_API UButtonWidget : public UBaseUserWidget
 
 public:
 	UPROPERTY(BlueprintAssignable, Category="TrickyUserInterface")
-	FOnClickSignature OnClicked;
+	FOnButtonClickSignature OnButtonClick;
 	
 protected:
 	virtual void NativeConstruct() override;
@@ -28,5 +28,6 @@ protected:
 	UButton* MainButton = nullptr;
 
 private:
+	UFUNCTION()
 	void OnButtonClicked();
 };
