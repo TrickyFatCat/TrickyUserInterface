@@ -32,13 +32,13 @@ public:
 	FOnSplashChangedSignature OnSplashChanged;
 
 protected:
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
 	UTransitionScreenWidget* TransitionScreenWidget;
 
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
 	UImage* SplashScreenImage = nullptr;
 
-	UPROPERTY(EditDefaultsOnly, Category="SplashScreen")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="SplashScreen")
 	TArray<UTexture2D*> SplashImages;
 
 	int32 CurrentSplashIndex = 0;
@@ -53,6 +53,7 @@ private:
 		meta=(AllowPrivateAccess="true", ClampMin="0.25"))
 	float SplashDuration = 1.5f;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(AllowPrivateAccess))
 	FTimerHandle SplashTimerHandle;
 
 	UFUNCTION()

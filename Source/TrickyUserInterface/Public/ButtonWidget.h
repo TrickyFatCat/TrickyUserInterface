@@ -24,7 +24,7 @@ public:
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="ButtonWidget", meta=(BindWidget))
 	UButton* MainButton = nullptr;
 
 private:

@@ -21,10 +21,10 @@ class TRICKYUSERINTERFACE_API UMainMenuWidget : public UBaseUserWidget
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
 	UTransitionScreenWidget* TransitionScreen;
 	
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
 	UButtonWidget* QuitButton = nullptr;
 	
 	UFUNCTION(BlueprintNativeEvent, Category="TrickyUserInterface")

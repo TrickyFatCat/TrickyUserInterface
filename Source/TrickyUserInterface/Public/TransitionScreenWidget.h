@@ -16,6 +16,6 @@ class TRICKYUSERINTERFACE_API UTransitionScreenWidget : public UBaseUserWidget
 	GENERATED_BODY()
 
 protected:
-	UPROPERTY(meta=(BindWidget))
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="TransitionScreen", meta=(BindWidget))
 	UImage* Image_Transition = nullptr;
 };
