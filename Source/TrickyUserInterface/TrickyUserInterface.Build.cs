@@ -38,7 +38,8 @@ public class TrickyUserInterface : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"UMG"
+				"UMG",
+				"TrickyGameMode"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

@@ -25,5 +25,11 @@
 				"Mac"
 			]
 		}
+	],
+	"Plugins": [
+		{
+			"Name": "TrickyGameMode",
+			"Enabled": true
+		}
 	]
 }
