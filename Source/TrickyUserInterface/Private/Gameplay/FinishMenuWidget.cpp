@@ -1,7 +1,7 @@
 // MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
 
 
-#include "FinishMenuWidget.h"
+#include "Gameplay/FinishMenuWidget.h"
 
 #include "ButtonWidget.h"
 #include "TransitionScreenWidget.h"

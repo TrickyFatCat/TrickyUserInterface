@@ -1,7 +1,7 @@
 // MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
 
 
-#include "SplashScreenWidget.h"
+#include "MainMenu/SplashScreenWidget.h"
 #include "TransitionScreenWidget.h"
 #include "Components/Image.h"
 

@@ -1,7 +1,7 @@
 // MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
 
 
-#include "GameplayHUD.h"
+#include "Gameplay/GameplayHUD.h"
 
 #include "BaseUserWidget.h"
 
