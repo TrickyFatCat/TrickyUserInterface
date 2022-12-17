@@ -20,9 +20,11 @@ class TRICKYUSERINTERFACE_API UBaseUserWidget : public UUserWidget
 	
 public:
 	virtual void NativeOnInitialized() override;
-	
+
+	UFUNCTION(BlueprintCallable)
 	void Show();
-	
+
+	UFUNCTION(BlueprintCallable)
 	void Hide();
 
 	UPROPERTY(BlueprintAssignable, Category="Animation")
