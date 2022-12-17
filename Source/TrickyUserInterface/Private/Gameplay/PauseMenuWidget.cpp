@@ -27,6 +27,7 @@ void UPauseMenuWidget::OnButtonClick_Implementation(UButtonWidget* Button)
 	if (Button == ResumeButton)
 	{
 		Hide();
+		UGameplayStatics::SetGamePaused(this,false);
 	}
 	else if (Button == RestartButton || Button == QuitButton)
 	{
