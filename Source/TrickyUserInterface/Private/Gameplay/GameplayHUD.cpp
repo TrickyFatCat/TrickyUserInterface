@@ -9,6 +9,7 @@ void AGameplayHUD::BeginPlay()
 {
 	Super::BeginPlay();
 
+	CreateUserWidget(EGameModeState::Inactive, InactiveStateWidget);
 	CreateUserWidget(EGameModeState::Preparation, PreparationScreenWidget);
 	CreateUserWidget(EGameModeState::InProgress, GameplayScreenWidget);
 	CreateUserWidget(EGameModeState::Pause, PauseScreenWidget);
