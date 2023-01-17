@@ -12,7 +12,7 @@ class UTransitionScreenWidget;
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UFinishMenuWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()

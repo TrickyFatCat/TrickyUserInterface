@@ -12,7 +12,7 @@ class UBaseUserWidget;
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API AGameplayHUD : public AHUD
 {
 	GENERATED_BODY()

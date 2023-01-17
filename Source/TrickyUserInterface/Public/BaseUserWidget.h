@@ -13,7 +13,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHiddenSignature);
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UBaseUserWidget : public UUserWidget
 {
 	GENERATED_BODY()

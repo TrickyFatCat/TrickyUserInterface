@@ -16,7 +16,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnSplashChangedSignature, const int
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API USplashScreenWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()

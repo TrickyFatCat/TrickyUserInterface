@@ -10,7 +10,7 @@ class UImage;
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UTransitionScreenWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()

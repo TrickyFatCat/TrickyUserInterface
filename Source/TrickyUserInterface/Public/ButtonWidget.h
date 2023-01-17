@@ -12,7 +12,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnButtonClickSignature, class UButt
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UButtonWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()

@@ -13,7 +13,7 @@ class UButtonWidget;
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UMainMenuWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()

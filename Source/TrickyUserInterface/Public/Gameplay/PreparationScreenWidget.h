@@ -12,7 +12,7 @@ class UTextBlock;
 /**
  * 
  */
-UCLASS()
+UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UPreparationScreenWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()
