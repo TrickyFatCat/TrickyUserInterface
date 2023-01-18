@@ -33,10 +33,10 @@ public:
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
-	UTransitionScreenWidget* TransitionScreenWidget;
+	UTransitionScreenWidget* Widget_TransitionScreen;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
-	UImage* SplashScreenImage = nullptr;
+	UImage* Image_Slash = nullptr;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="SplashScreen")
 	TArray<UTexture2D*> SplashImages;

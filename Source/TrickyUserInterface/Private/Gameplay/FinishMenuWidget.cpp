@@ -13,19 +13,19 @@ void UFinishMenuWidget::NativeConstruct()
 
 	auto BindButtonEvent = [&](UButtonWidget* ButtonWidget)
 	{
-		ButtonWidget->OnButtonClick.AddDynamic(this, &UFinishMenuWidget::OnButtonClicked);
+		ButtonWidget->OnButtonClicked.AddDynamic(this, &UFinishMenuWidget::OnButtonClicked);
 	};
 
-	BindButtonEvent(ContinueButton);
-	BindButtonEvent(RestartButton);
-	BindButtonEvent(QuitButton);
-	TransitionScreenWidget->OnHidden.AddDynamic(this, &UFinishMenuWidget::OnTransitionScreenShowed);
+	BindButtonEvent(Button_Continue);
+	BindButtonEvent(Button_Restart);
+	BindButtonEvent(Button_Quit);
+	Widget_TransitionScreen->OnHidden.AddDynamic(this, &UFinishMenuWidget::OnTransitionScreenShowed);
 }
 
 void UFinishMenuWidget::OnButtonClicked_Implementation(UButtonWidget* Button)
 {
 	ClickedButton = Button;
-	TransitionScreenWidget->Show();
+	Widget_TransitionScreen->Show();
 }
 
 void UFinishMenuWidget::Continue_Implementation()
@@ -47,15 +47,15 @@ void UFinishMenuWidget::Quit_Implementation()
 
 void UFinishMenuWidget::OnTransitionScreenShowed_Implementation()
 {
-	if (ClickedButton == ContinueButton)
+	if (ClickedButton == Button_Continue)
 	{
 		Continue();
 	}
-	else if (ClickedButton == RestartButton)
+	else if (ClickedButton == Button_Restart)
 	{
 		Restart();
 	}
-	else if (ClickedButton == QuitButton)
+	else if (ClickedButton == Button_Quit)
 	{
 		Quit();
 	}

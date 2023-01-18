@@ -21,19 +21,19 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
-	UButtonWidget* ContinueButton = nullptr;
+	UButtonWidget* Button_Continue = nullptr;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
-	UButtonWidget* RestartButton = nullptr;
+	UButtonWidget* Button_Restart = nullptr;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
-	UButtonWidget* QuitButton = nullptr;
+	UButtonWidget* Button_Quit = nullptr;
 
 	UPROPERTY()
 	UButtonWidget* ClickedButton = nullptr;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
-	UTransitionScreenWidget* TransitionScreenWidget = nullptr;
+	UTransitionScreenWidget* Widget_TransitionScreen = nullptr;
 
 	UFUNCTION(BlueprintNativeEvent, Category="FinishScreen")
 	void OnButtonClicked(UButtonWidget* Button);

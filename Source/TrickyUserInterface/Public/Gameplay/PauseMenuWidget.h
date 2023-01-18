@@ -21,19 +21,19 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* ResumeButton = nullptr;
+	UButtonWidget* Button_Resume = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* RestartButton = nullptr;
+	UButtonWidget* Button_Restart = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* QuitButton = nullptr;
+	UButtonWidget* Button_Quit = nullptr;
 
 	UPROPERTY()
 	UButtonWidget* ClickedButton = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UTransitionScreenWidget* TransitionScreenWidget = nullptr;
+	UTransitionScreenWidget* Widget_TransitionScreen = nullptr;
 
 	UFUNCTION(BlueprintNativeEvent, Category="PauseMenu")
 	void OnButtonClick(UButtonWidget* Button);

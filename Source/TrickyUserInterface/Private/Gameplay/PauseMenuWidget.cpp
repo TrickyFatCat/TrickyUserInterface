@@ -13,26 +13,26 @@ void UPauseMenuWidget::NativeConstruct()
 
 	auto BindButtonEvent = [&](UButtonWidget* ButtonWidget)
 	{
-		ButtonWidget->OnButtonClick.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
+		ButtonWidget->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
 	};
 
-	BindButtonEvent(ResumeButton);
-	BindButtonEvent(RestartButton);
-	BindButtonEvent(QuitButton);
-	TransitionScreenWidget->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
+	BindButtonEvent(Button_Resume);
+	BindButtonEvent(Button_Restart);
+	BindButtonEvent(Button_Quit);
+	Widget_TransitionScreen->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
 }
 
 void UPauseMenuWidget::OnButtonClick_Implementation(UButtonWidget* Button)
 {
-	if (Button == ResumeButton)
+	if (Button == Button_Resume)
 	{
 		Hide();
 		UGameplayStatics::SetGamePaused(this,false);
 	}
-	else if (Button == RestartButton || Button == QuitButton)
+	else if (Button == Button_Restart || Button == Button_Quit)
 	{
 		ClickedButton = Button;
-		TransitionScreenWidget->Show();
+		Widget_TransitionScreen->Show();
 	}
 }
 
@@ -49,11 +49,11 @@ void UPauseMenuWidget::Quit_Implementation()
 
 void UPauseMenuWidget::TransitionScreenShowed_Implementation()
 {
-	if (ClickedButton == RestartButton)
+	if (ClickedButton == Button_Restart)
 	{
 		Restart();
 	}
-	else if (ClickedButton == QuitButton)
+	else if (ClickedButton == Button_Quit)
 	{
 		Quit();
 	}

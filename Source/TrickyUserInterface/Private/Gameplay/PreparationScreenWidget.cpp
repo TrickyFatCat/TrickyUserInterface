@@ -8,6 +8,6 @@
 void UPreparationScreenWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
-	TransitionScreenWidget->Hide();
+	Widget_TransitionScreen->Hide();
 }
 

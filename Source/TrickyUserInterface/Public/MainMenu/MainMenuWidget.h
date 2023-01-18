@@ -22,10 +22,10 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
-	UTransitionScreenWidget* TransitionScreen;
+	UTransitionScreenWidget* Widget_TransitionScreen;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
-	UButtonWidget* QuitButton = nullptr;
+	UButtonWidget* Button_Quit = nullptr;
 	
 	UFUNCTION(BlueprintNativeEvent, Category="TrickyUserInterface")
 	void OnTransitionScreenShowed();

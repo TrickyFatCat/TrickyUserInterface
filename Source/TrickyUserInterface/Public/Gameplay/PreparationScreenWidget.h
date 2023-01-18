@@ -21,8 +21,8 @@ protected:
 	virtual void NativeConstruct() override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PreparationScreen", meta=(BindWidget))
-	UTransitionScreenWidget* TransitionScreenWidget = nullptr;
+	UTransitionScreenWidget* Widget_TransitionScreen = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PreparationScreen", meta=(BindWidget))
-	UTextBlock* PreparationTimer = nullptr;
+	UTextBlock* Text_PreparationTimer = nullptr;
 };

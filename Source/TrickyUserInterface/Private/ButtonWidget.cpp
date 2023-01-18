@@ -8,10 +8,10 @@ void UButtonWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	MainButton->OnClicked.AddDynamic(this, &UButtonWidget::OnButtonClicked);
+	Button_Main->OnClicked.AddDynamic(this, &UButtonWidget::HandleButtonClick);
 }
 
-void UButtonWidget::OnButtonClicked()
+void UButtonWidget::HandleButtonClick()
 {
-	OnButtonClick.Broadcast(this);
+	OnButtonClicked.Broadcast(this);
 }

@@ -11,8 +11,8 @@ void USplashScreenWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	TransitionScreenWidget->OnHidden.AddDynamic(this, &USplashScreenWidget::StartSplashTimer);
-	TransitionScreenWidget->OnShowed.AddDynamic(this, &USplashScreenWidget::SwitchSplashScreen);
+	Widget_TransitionScreen->OnHidden.AddDynamic(this, &USplashScreenWidget::StartSplashTimer);
+	Widget_TransitionScreen->OnShowed.AddDynamic(this, &USplashScreenWidget::SwitchSplashScreen);
 
 	if (SplashImages.Num() == 0)
 	{
@@ -21,8 +21,8 @@ void USplashScreenWidget::NativeConstruct()
 		return;
 	}
 
-	SplashScreenImage->SetBrushFromTexture(SplashImages[CurrentSplashIndex], true);
-	TransitionScreenWidget->Hide();
+	Image_Slash->SetBrushFromTexture(SplashImages[CurrentSplashIndex], true);
+	Widget_TransitionScreen->Hide();
 }
 
 void USplashScreenWidget::StartSplashTimer()
@@ -34,7 +34,7 @@ void USplashScreenWidget::StartSplashTimer()
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle,
-	                                       TransitionScreenWidget,
+	                                       Widget_TransitionScreen,
 	                                       &UTransitionScreenWidget::Show,
 	                                       SplashDuration);
 }
@@ -53,7 +53,7 @@ void USplashScreenWidget::SwitchSplashScreen()
 	
 	if (Texture)
 	{
-		SplashScreenImage->SetBrushFromTexture(Texture, true);
+		Image_Slash->SetBrushFromTexture(Texture, true);
 		OnSplashChanged.Broadcast(CurrentSplashIndex);
 	}
 	else
@@ -61,5 +61,5 @@ void USplashScreenWidget::SwitchSplashScreen()
 		UE_LOG(LogSplashScreen, Warning, TEXT("Splashscreen %d is nullptr. Please, set this splashscreen."), CurrentSplashIndex);
 	}
 
-	TransitionScreenWidget->Hide();
+	Widget_TransitionScreen->Hide();
 }

@@ -11,9 +11,9 @@ void UMainMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	QuitButton->OnButtonClick.AddDynamic(this, &UMainMenuWidget::QuitGame);
-	TransitionScreen->OnShowed.AddDynamic(this, &UMainMenuWidget::OnTransitionScreenShowed);
-	TransitionScreen->Hide();
+	Button_Quit->OnButtonClicked.AddDynamic(this, &UMainMenuWidget::QuitGame);
+	Widget_TransitionScreen->OnShowed.AddDynamic(this, &UMainMenuWidget::OnTransitionScreenShowed);
+	Widget_TransitionScreen->Hide();
 }
 
 void UMainMenuWidget::OnTransitionScreenShowed_Implementation()
@@ -31,5 +31,5 @@ void UMainMenuWidget::OnTransitionScreenHidden_Implementation()
 void UMainMenuWidget::QuitGame(UButtonWidget* Button)
 {
 	bMustBeQuit =  true;
-	TransitionScreen->Show();
+	Widget_TransitionScreen->Show();
 }
