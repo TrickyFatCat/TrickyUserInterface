@@ -11,7 +11,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnShowedSignature);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnHiddenSignature);
 
 /**
- * 
+ * Base user widget.
  */
 UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UBaseUserWidget : public UUserWidget
@@ -21,15 +21,19 @@ class TRICKYUSERINTERFACE_API UBaseUserWidget : public UUserWidget
 public:
 	virtual void NativeOnInitialized() override;
 
+	/**Starts the show animation.*/
 	UFUNCTION(BlueprintCallable)
 	void Show();
 
+	/**Starts the hide animation.*/
 	UFUNCTION(BlueprintCallable)
 	void Hide();
 
+	/**Called when the show animation finishes.*/
 	UPROPERTY(BlueprintAssignable, Category="Animation")
 	FOnShowedSignature OnShowed;
-	
+
+	/**Called when the hide animation finishes.*/
 	UPROPERTY(BlueprintAssignable, Category="Animation")
 	FOnHiddenSignature OnHidden;
 

@@ -10,7 +10,7 @@ class UTransitionScreenWidget;
 class UTextBlock;
 
 /**
- * 
+ * A widget for creation of a simple preparation screen with a timer before the game started.
  */
 UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UPreparationScreenWidget : public UBaseUserWidget

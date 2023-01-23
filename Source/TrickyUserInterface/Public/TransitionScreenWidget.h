@@ -8,7 +8,7 @@
 
 class UImage;
 /**
- * 
+ * A widget which allows to create a smooth transition screen.
  */
 UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API UTransitionScreenWidget : public UBaseUserWidget

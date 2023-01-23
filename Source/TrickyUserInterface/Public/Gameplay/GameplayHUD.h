@@ -10,7 +10,7 @@
 class UBaseUserWidget;
 
 /**
- * 
+ * A base HUD class. It automatically show and hide widgets depending on a game state.
  */
 UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API AGameplayHUD : public AHUD
@@ -20,21 +20,23 @@ class TRICKYUSERINTERFACE_API AGameplayHUD : public AHUD
 protected:
 	virtual void BeginPlay() override;
 
-public:
-
-protected:
+	/**A widget which will be shown in the Inactive game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> InactiveStateWidget = nullptr;
 	
+	/**A widget which will be shown in the Preparation game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> PreparationScreenWidget = nullptr;
 	
+	/**A widget which will be shown in the InProgress game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> GameplayScreenWidget = nullptr;
 	
+	/**A widget which will be shown in the Pause game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> PauseScreenWidget = nullptr;
 	
+	/**A widget which will be shown in the Finished game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> FinishScreenWidget = nullptr;
 
