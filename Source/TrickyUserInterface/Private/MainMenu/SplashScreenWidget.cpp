@@ -4,6 +4,7 @@
 #include "MainMenu/SplashScreenWidget.h"
 #include "TransitionScreenWidget.h"
 #include "Components/Image.h"
+#include "TimerManager.h"
 
 DECLARE_LOG_CATEGORY_CLASS(LogSplashScreen, All, All);
 
