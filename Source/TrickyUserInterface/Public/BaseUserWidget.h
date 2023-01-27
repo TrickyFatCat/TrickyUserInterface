@@ -22,11 +22,11 @@ public:
 	virtual void NativeOnInitialized() override;
 
 	/**Starts the show animation.*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="BaseUserWidget")
 	void Show();
 
 	/**Starts the hide animation.*/
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="BaseUserWidget")
 	void Hide();
 
 	/**Called when the show animation finishes.*/
