@@ -10,7 +10,7 @@
 class UBaseUserWidget;
 
 /**
- * A base HUD class. It automatically show and hide widgets depending on a game state.
+ * A base HUD class for gameplay. It automatically show and hide widgets depending on a game state.
  */
 UCLASS(Abstract)
 class TRICKYUSERINTERFACE_API AGameplayHUD : public AHUD
