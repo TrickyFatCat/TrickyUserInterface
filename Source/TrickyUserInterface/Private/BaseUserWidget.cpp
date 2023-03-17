@@ -3,6 +3,8 @@
 
 #include "BaseUserWidget.h"
 
+#include "Animation/WidgetAnimation.h"
+
 void UBaseUserWidget::NativeOnInitialized()
 {
 	Super::NativeOnInitialized();

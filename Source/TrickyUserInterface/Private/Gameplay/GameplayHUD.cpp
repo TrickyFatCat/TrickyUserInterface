@@ -4,6 +4,7 @@
 #include "Gameplay/GameplayHUD.h"
 
 #include "BaseUserWidget.h"
+#include "GameModeSession.h"
 
 void AGameplayHUD::BeginPlay()
 {
