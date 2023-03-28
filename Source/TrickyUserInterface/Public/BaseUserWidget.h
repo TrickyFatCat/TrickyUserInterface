@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -39,10 +39,10 @@ public:
 
 protected:
 	UPROPERTY(Transient, meta=(BindWidgetAnim))
-	UWidgetAnimation* ShowAnimation = nullptr;
+	TObjectPtr<UWidgetAnimation> ShowAnimation = nullptr;
 	
 	UPROPERTY(Transient, meta=(BindWidgetAnim))
-	UWidgetAnimation* HideAnimation = nullptr;
+	TObjectPtr<UWidgetAnimation> HideAnimation = nullptr;
 
 	virtual void OnAnimationStarted_Implementation(const UWidgetAnimation* Animation) override;
 	

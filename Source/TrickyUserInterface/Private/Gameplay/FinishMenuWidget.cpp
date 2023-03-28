@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
 #include "Gameplay/FinishMenuWidget.h"
@@ -16,9 +16,9 @@ void UFinishMenuWidget::NativeConstruct()
 		ButtonWidget->OnButtonClicked.AddDynamic(this, &UFinishMenuWidget::OnButtonClicked);
 	};
 
-	BindButtonEvent(Button_Continue);
-	BindButtonEvent(Button_Restart);
-	BindButtonEvent(Button_Quit);
+	BindButtonEvent(ToRawPtr(Button_Continue));
+	BindButtonEvent(ToRawPtr(Button_Restart));
+	BindButtonEvent(ToRawPtr(Button_Quit));
 	Widget_TransitionScreen->OnHidden.AddDynamic(this, &UFinishMenuWidget::OnTransitionScreenShowed);
 }
 

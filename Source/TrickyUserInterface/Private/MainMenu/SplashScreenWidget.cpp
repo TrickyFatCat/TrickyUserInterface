@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
 #include "MainMenu/SplashScreenWidget.h"
@@ -35,7 +35,7 @@ void USplashScreenWidget::StartSplashTimer()
 
 	FTimerHandle TimerHandle;
 	GetWorld()->GetTimerManager().SetTimer(TimerHandle,
-	                                       Widget_TransitionScreen,
+	                                       ToRawPtr(Widget_TransitionScreen),
 	                                       &UTransitionScreenWidget::Show,
 	                                       SplashDuration);
 }
@@ -50,11 +50,11 @@ void USplashScreenWidget::SwitchSplashScreen()
 		return;
 	}
 
-	UTexture2D* Texture = SplashImages[CurrentSplashIndex];
+	TObjectPtr<UTexture2D> Texture = SplashImages[CurrentSplashIndex];
 	
 	if (Texture)
 	{
-		Image_Slash->SetBrushFromTexture(Texture, true);
+		Image_Slash->SetBrushFromTexture(ToRawPtr(Texture), true);
 		OnSplashChanged.Broadcast(CurrentSplashIndex);
 	}
 	else

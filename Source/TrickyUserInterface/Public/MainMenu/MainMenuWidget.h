@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -22,10 +22,10 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
-	UTransitionScreenWidget* Widget_TransitionScreen;
+	TObjectPtr<UTransitionScreenWidget> Widget_TransitionScreen;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="MainMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quit = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 
 	/**Called when the transition screen finishes its show animation.*/
 	UFUNCTION(BlueprintNativeEvent, Category="TrickyUserInterface")

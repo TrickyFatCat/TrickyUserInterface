@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -35,14 +35,14 @@ public:
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
-	UTransitionScreenWidget* Widget_TransitionScreen;
+	TObjectPtr<UTransitionScreenWidget> Widget_TransitionScreen;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
-	UImage* Image_Slash = nullptr;
+	TObjectPtr<UImage> Image_Slash = nullptr;
 
 	/**An array of transition screens to show.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="SplashScreen")
-	TArray<UTexture2D*> SplashImages;
+	TArray<TObjectPtr<UTexture2D>> SplashImages;
 
 	int32 CurrentSplashIndex = 0;
 

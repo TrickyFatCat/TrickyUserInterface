@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
 #include "Gameplay/PauseMenuWidget.h"
@@ -16,9 +16,9 @@ void UPauseMenuWidget::NativeConstruct()
 		ButtonWidget->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
 	};
 
-	BindButtonEvent(Button_Resume);
-	BindButtonEvent(Button_Restart);
-	BindButtonEvent(Button_Quit);
+	BindButtonEvent(ToRawPtr(Button_Resume));
+	BindButtonEvent(ToRawPtr(Button_Restart));
+	BindButtonEvent(ToRawPtr(Button_Quit));
 	Widget_TransitionScreen->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
 }
 

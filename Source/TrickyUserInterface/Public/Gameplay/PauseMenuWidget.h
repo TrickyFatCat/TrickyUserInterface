@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -21,16 +21,16 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* Button_Resume = nullptr;
+	TObjectPtr<UButtonWidget> Button_Resume = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* Button_Restart = nullptr;
+	TObjectPtr<UButtonWidget> Button_Restart = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quit = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 
 	UPROPERTY()
-	UButtonWidget* ClickedButton = nullptr;
+	TObjectPtr<UButtonWidget> ClickedButton = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PauseMenu", meta=(BindWidget))
 	UTransitionScreenWidget* Widget_TransitionScreen = nullptr;

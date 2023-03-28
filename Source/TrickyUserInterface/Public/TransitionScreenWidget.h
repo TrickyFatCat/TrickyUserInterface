@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -17,5 +17,5 @@ class TRICKYUSERINTERFACE_API UTransitionScreenWidget : public UBaseUserWidget
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="TransitionScreen", meta=(BindWidget))
-	UImage* Image_Transition = nullptr;
+	TObjectPtr<UImage> Image_Transition = nullptr;
 };

@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -21,8 +21,8 @@ protected:
 	virtual void NativeConstruct() override;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PreparationScreen", meta=(BindWidget))
-	UTransitionScreenWidget* Widget_TransitionScreen = nullptr;
+	TObjectPtr<UTransitionScreenWidget> Widget_TransitionScreen = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="PreparationScreen", meta=(BindWidget))
-	UTextBlock* Text_PreparationTimer = nullptr;
+	TObjectPtr<UTextBlock> Text_PreparationTimer = nullptr;
 };

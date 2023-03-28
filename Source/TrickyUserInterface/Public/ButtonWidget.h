@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 #pragma once
 
@@ -27,7 +27,7 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="ButtonWidget", meta=(BindWidget))
-	UButton* Button_Main = nullptr;
+	TObjectPtr<UButton> Button_Main = nullptr;
 
 private:
 	UFUNCTION()

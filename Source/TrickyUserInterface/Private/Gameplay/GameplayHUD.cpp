@@ -1,4 +1,4 @@
-// MIT License Copyright (c) 2022 Artyom "Tricky Fat Cat" Volkov
+// MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
 #include "Gameplay/GameplayHUD.h"
@@ -32,7 +32,7 @@ void AGameplayHUD::BeginPlay()
 
 	if (GetWorld())
 	{
-		AGameModeSession* GameMode = Cast<AGameModeSession>(GetWorld()->GetAuthGameMode());
+		TObjectPtr<AGameModeSession> GameMode = Cast<AGameModeSession>(GetWorld()->GetAuthGameMode());
 
 		if (GameMode)
 		{
@@ -64,5 +64,5 @@ void AGameplayHUD::CreateUserWidget(const EGameModeState State, TSubclassOf<UBas
 		return;
 	}
 
-	UserWidgets.Add(State, CreateWidget<UBaseUserWidget>(GetWorld(), WidgetClass));
+	UserWidgets.Add(State, ToObjectPtr(CreateWidget<UBaseUserWidget>(GetWorld(), WidgetClass)));
 }
