@@ -10,26 +10,51 @@ void USettingsMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	QualityButtons.Add(ToRawPtr(Button_Quality_Low), 0);
-	QualityButtons.Add(ToRawPtr(Button_Quality_Medium), 1);
-	QualityButtons.Add(ToRawPtr(Button_Quality_High), 2);
-
 	Button_Quality_Low->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 	Button_Quality_Medium->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 	Button_Quality_High->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 
-	const int32 QualityIndex = UGameUserSettings::GetGameUserSettings()->GetShadowQuality();
-	UButtonWidget* ButtonWidget = *QualityButtons.FindKey(QualityIndex);
-	if (ButtonWidget)
-	{
-		ButtonWidget->SetIsEnabled(false);
-	}
+	const UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
+	const int32 QualityIndex = UserSettings->GetShadowQuality();
 
-	ScreenModeButtons.Add(ToRawPtr(Button_ScreenMode_Window), EWindowMode::Windowed);
-	ScreenModeButtons.Add(ToRawPtr(Button_ScreenMode_Full), EWindowMode::Fullscreen);
+	switch (QualityIndex)
+	{
+	case 0:
+		Button_Quality_Low->SetIsEnabled(false);
+		CurrentQualityButton = Button_Quality_Low;
+		break;
+
+	case 1:
+		Button_Quality_Medium->SetIsEnabled(false);
+		CurrentQualityButton = Button_Quality_Medium;
+		break;
+
+	case 2:
+		Button_Quality_High->SetIsEnabled(false);
+		CurrentQualityButton = Button_Quality_High;
+		break;
+
+	default:
+		break;
+	}
 
 	Button_ScreenMode_Window->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
 	Button_ScreenMode_Full->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
+
+	const EWindowMode::Type WindowMode = UserSettings->GetFullscreenMode();
+
+	switch (WindowMode)
+	{
+	case EWindowMode::Fullscreen:
+		Button_ScreenMode_Full->SetIsEnabled(false);
+		CurrentScreenModeButton = Button_ScreenMode_Full;
+		break;
+
+	case EWindowMode::Windowed:
+		Button_ScreenMode_Window->SetIsEnabled(false);
+		CurrentScreenModeButton = Button_ScreenMode_Window;
+		break;
+	}
 }
 
 void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
@@ -42,6 +67,21 @@ void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
 	UserSettings->SetViewDistanceQuality(QualityIndex);
 	UserSettings->SetShadingQuality(QualityIndex);
 	UserSettings->SetFoliageQuality(QualityIndex);
+
+	switch (QualityIndex)
+	{
+	case 0:
+		UserSettings->SetResolutionScaleNormalized(0.5f);
+		break;
+
+	case 1:
+		UserSettings->SetResolutionScaleNormalized(0.75f);
+		break;
+
+	case 2:
+		UserSettings->SetResolutionScaleNormalized(1.0f);
+		break;
+	}
 	UserSettings->ApplySettings(false);
 }
 
@@ -60,25 +100,25 @@ void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 		return;
 	}
 
-	const int* QualityIndex = QualityButtons.Find(ButtonWidget);
+	int32 QualityIndex = 0;
 
-	if (!QualityIndex)
+	if (ButtonWidget == Button_Quality_Low)
 	{
-		return;
+		QualityIndex = 0;
+	}
+	else if (ButtonWidget == Button_Quality_Medium)
+	{
+		QualityIndex = 1;
+	}
+	else if (ButtonWidget == Button_Quality_High)
+	{
+		QualityIndex = 2;
 	}
 
-	SetQualitySettings(*QualityIndex);
+	SetQualitySettings(QualityIndex);
 	ButtonWidget->SetIsEnabled(false);
-
-	for (const auto& Pair : QualityButtons)
-	{
-		if (Pair.Key == ButtonWidget)
-		{
-			continue;
-		}
-
-		Pair.Key->SetIsEnabled(true);
-	}
+	CurrentQualityButton->SetIsEnabled(true);
+	CurrentQualityButton = ButtonWidget;
 }
 
 void USettingsMenuWidget::ApplyScreenMode(UButtonWidget* ButtonWidget)
@@ -88,16 +128,15 @@ void USettingsMenuWidget::ApplyScreenMode(UButtonWidget* ButtonWidget)
 		return;
 	}
 
-	SetScreenMode(*ScreenModeButtons.Find(ButtonWidget));
-	ButtonWidget->SetIsEnabled(false);
+	EWindowMode::Type WindowMode = EWindowMode::Fullscreen;
 	
-	for (const auto& Pair : ScreenModeButtons)
+	if (ButtonWidget == Button_ScreenMode_Window)
 	{
-		if (Pair.Key == ButtonWidget)
-		{
-			continue;
-		}
-
-		Pair.Key->SetIsEnabled(true);
+		WindowMode = EWindowMode::Windowed;
 	}
+
+	SetScreenMode(WindowMode);
+	ButtonWidget->SetIsEnabled(false);
+	CurrentScreenModeButton->SetIsEnabled(true);
+	CurrentScreenModeButton = ButtonWidget;
 }
