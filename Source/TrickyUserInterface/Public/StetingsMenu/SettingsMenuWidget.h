@@ -21,22 +21,22 @@ protected:
 	virtual void NativeConstruct() override;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_ScreenMode_Full = nullptr;
+	TObjectPtr<UButtonWidget> Button_ScreenMode_Full = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_ScreenMode_Window = nullptr;
+	TObjectPtr<UButtonWidget> Button_ScreenMode_Window = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quality_Low = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quality_Low = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quality_Medium = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quality_Medium = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quality_High = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quality_High = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	UButtonWidget* Button_Quit = nullptr;
+	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -47,10 +47,10 @@ public:
 
 private:
 	UPROPERTY()
-	UButtonWidget* CurrentQualityButton = nullptr;
+	TObjectPtr<UButtonWidget> CurrentQualityButton = nullptr;
 
 	UPROPERTY()
-	UButtonWidget* CurrentScreenModeButton = nullptr;
+	TObjectPtr<UButtonWidget> CurrentScreenModeButton = nullptr;
 
 	UFUNCTION()
 	void ApplyQuality(UButtonWidget* ButtonWidget);

@@ -82,6 +82,7 @@ void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
 		UserSettings->SetResolutionScaleNormalized(1.0f);
 		break;
 	}
+	
 	UserSettings->ApplySettings(false);
 }
 
