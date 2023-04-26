@@ -15,7 +15,7 @@ void USettingsMenuWidget::NativeConstruct()
 	Button_Quality_High->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 
 	const UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-	const int32 QualityIndex = UserSettings->GetShadowQuality();
+	const int32 QualityIndex = UserSettings->GetOverallScalabilityLevel();
 
 	switch (QualityIndex)
 	{
@@ -35,6 +35,9 @@ void USettingsMenuWidget::NativeConstruct()
 		break;
 
 	default:
+		Button_Quality_High->SetIsEnabled(false);
+		CurrentQualityButton = Button_Quality_High;
+		SetQualitySettings(2);
 		break;
 	}
 
@@ -42,12 +45,13 @@ void USettingsMenuWidget::NativeConstruct()
 	Button_ScreenMode_Full->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
 
 	const EWindowMode::Type WindowMode = UserSettings->GetFullscreenMode();
-
+	
 	switch (WindowMode)
 	{
 	case EWindowMode::Fullscreen:
 		Button_ScreenMode_Full->SetIsEnabled(false);
 		CurrentScreenModeButton = Button_ScreenMode_Full;
+		SetScreenMode(EWindowMode::Fullscreen);
 		break;
 
 	case EWindowMode::Windowed:
@@ -82,7 +86,7 @@ void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
 		UserSettings->SetResolutionScaleNormalized(1.0f);
 		break;
 	}
-	
+
 	UserSettings->ApplySettings(false);
 }
 
@@ -90,9 +94,19 @@ void USettingsMenuWidget::SetScreenMode(EWindowMode::Type ScreenMode)
 {
 	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
 	UserSettings->SetFullscreenMode(ScreenMode);
-	UserSettings->ApplySettings(false);
-}
+	
+	FIntPoint DesktopResolution = UserSettings->GetDesktopResolution();
 
+	if (ScreenMode == EWindowMode::Windowed)
+	{
+		DesktopResolution.X *= 0.75;
+		DesktopResolution.Y *= 0.75;
+	}
+	
+	UserSettings->SetScreenResolution(DesktopResolution);
+	UserSettings->ApplySettings(false);
+	UserSettings->ApplyResolutionSettings(false);
+}
 
 void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 {
@@ -130,7 +144,7 @@ void USettingsMenuWidget::ApplyScreenMode(UButtonWidget* ButtonWidget)
 	}
 
 	EWindowMode::Type WindowMode = EWindowMode::Fullscreen;
-	
+
 	if (ButtonWidget == Button_ScreenMode_Window)
 	{
 		WindowMode = EWindowMode::Windowed;
