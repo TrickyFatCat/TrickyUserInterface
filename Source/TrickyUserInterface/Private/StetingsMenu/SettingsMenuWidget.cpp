@@ -44,11 +44,12 @@ void USettingsMenuWidget::NativeConstruct()
 	Button_ScreenMode_Window->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
 	Button_ScreenMode_Full->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
 
-	const EWindowMode::Type WindowMode = UserSettings->GetFullscreenMode();
+	const EWindowMode::Type WindowMode = UserSettings->GetDefaultWindowMode();
 	
 	switch (WindowMode)
 	{
 	case EWindowMode::Fullscreen:
+	case EWindowMode::WindowedFullscreen:
 		Button_ScreenMode_Full->SetIsEnabled(false);
 		CurrentScreenModeButton = Button_ScreenMode_Full;
 		SetScreenMode(EWindowMode::Fullscreen);
