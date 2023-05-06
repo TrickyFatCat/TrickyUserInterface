@@ -4,8 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/HUD.h"
-#include "GameModeSession.h"
-#include "GameplayHUD.generated.h"
+#include "TrickyGameModeBase.h"
+#include "TrickyHUDGame.generated.h"
 
 class UBaseUserWidget;
 
@@ -13,7 +13,7 @@ class UBaseUserWidget;
  * A base HUD class for gameplay. It automatically show and hide widgets depending on a game state.
  */
 UCLASS(Abstract)
-class TRICKYUSERINTERFACE_API AGameplayHUD : public AHUD
+class TRICKYUSERINTERFACE_API ATrickyHUDGame : public AHUD
 {
 	GENERATED_BODY()
 

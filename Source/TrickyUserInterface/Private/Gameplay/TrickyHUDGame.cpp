@@ -1,12 +1,12 @@
 // MIT License Copyright (c) Artyom "Tricky Fat Cat" Volkov
 
 
-#include "Gameplay/GameplayHUD.h"
+#include "Gameplay/TrickyHUDGame.h"
 
 #include "BaseUserWidget.h"
-#include "GameModeSession.h"
+#include "TrickyGameModeBase.h"
 
-void AGameplayHUD::BeginPlay()
+void ATrickyHUDGame::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -14,7 +14,7 @@ void AGameplayHUD::BeginPlay()
 	CreateUserWidget(EGameModeState::Preparation, PreparationScreenWidget);
 	CreateUserWidget(EGameModeState::InProgress, GameplayScreenWidget);
 	CreateUserWidget(EGameModeState::Pause, PauseScreenWidget);
-	CreateUserWidget(EGameModeState::Finished, FinishScreenWidget);
+	CreateUserWidget(EGameModeState::Lose, FinishScreenWidget);
 
 	
 	for (const auto WidgetPair : UserWidgets)
@@ -32,16 +32,16 @@ void AGameplayHUD::BeginPlay()
 
 	if (GetWorld())
 	{
-		TObjectPtr<AGameModeSession> GameMode = Cast<AGameModeSession>(GetWorld()->GetAuthGameMode());
+		TObjectPtr<ATrickyGameModeBase> GameMode = Cast<ATrickyGameModeBase>(GetWorld()->GetAuthGameMode());
 
 		if (GameMode)
 		{
-			GameMode->OnStateChanged.AddDynamic(this, &AGameplayHUD::OnGameModeSessionChanged);
+			GameMode->OnStateChanged.AddDynamic(this, &ATrickyHUDGame::OnGameModeSessionChanged);
 		}
 	}
 }
 
-void AGameplayHUD::OnGameModeSessionChanged(EGameModeState NewState)
+void ATrickyHUDGame::OnGameModeSessionChanged(EGameModeState NewState)
 {
 	if (ActiveWidget)
 	{
@@ -57,7 +57,7 @@ void AGameplayHUD::OnGameModeSessionChanged(EGameModeState NewState)
 	ActiveWidget->Show();
 }
 
-void AGameplayHUD::CreateUserWidget(const EGameModeState State, TSubclassOf<UBaseUserWidget> WidgetClass)
+void ATrickyHUDGame::CreateUserWidget(const EGameModeState State, TSubclassOf<UBaseUserWidget> WidgetClass)
 {
 	if (!WidgetClass)
 	{
