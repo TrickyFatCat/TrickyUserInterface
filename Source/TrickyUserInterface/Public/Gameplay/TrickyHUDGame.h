@@ -36,10 +36,13 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> PauseScreenWidget = nullptr;
 	
-	/**A widget which will be shown in the Finished game state.*/
+	/**A widget which will be shown in the win game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
-	TSubclassOf<UBaseUserWidget> FinishScreenWidget = nullptr;
+	TSubclassOf<UBaseUserWidget> WinScreenWidget = nullptr;
 
+	/**A widget which will be shown in the lose game state.*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
+	TSubclassOf<UBaseUserWidget> LoseScreenWidget = nullptr;
 private:
 	UPROPERTY()
 	TMap<EGameModeState, TObjectPtr<UBaseUserWidget>> UserWidgets;
