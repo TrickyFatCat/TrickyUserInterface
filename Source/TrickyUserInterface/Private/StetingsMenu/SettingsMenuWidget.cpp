@@ -3,6 +3,7 @@
 #include "StetingsMenu/SettingsMenuWidget.h"
 
 #include "ButtonWidget.h"
+#include "Components/Slider.h"
 #include "GameFramework/GameUserSettings.h"
 
 
@@ -13,9 +14,11 @@ void USettingsMenuWidget::NativeConstruct()
 	Button_Quality_Low->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 	Button_Quality_Medium->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 	Button_Quality_High->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
+	Button_Quality_Epic->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
+	Slider_ResolutionScale->OnValueChanged.AddDynamic(this, &USettingsMenuWidget::ApplyResolutionScale);
 
 	const UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-	const int32 QualityIndex = UserSettings->GetOverallScalabilityLevel();
+	const int32 QualityIndex = UserSettings->GetViewDistanceQuality();
 
 	switch (QualityIndex)
 	{
@@ -34,10 +37,9 @@ void USettingsMenuWidget::NativeConstruct()
 		CurrentQualityButton = Button_Quality_High;
 		break;
 
-	default:
-		Button_Quality_High->SetIsEnabled(false);
-		CurrentQualityButton = Button_Quality_High;
-		SetQualitySettings(2);
+	case 3:
+		Button_Quality_Epic->SetIsEnabled(false);
+		CurrentQualityButton = Button_Quality_Epic;
 		break;
 	}
 
@@ -52,7 +54,6 @@ void USettingsMenuWidget::NativeConstruct()
 	case EWindowMode::WindowedFullscreen:
 		Button_ScreenMode_Full->SetIsEnabled(false);
 		CurrentScreenModeButton = Button_ScreenMode_Full;
-		SetScreenMode(EWindowMode::Fullscreen);
 		break;
 
 	case EWindowMode::Windowed:
@@ -64,29 +65,23 @@ void USettingsMenuWidget::NativeConstruct()
 
 void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
 {
-	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-	UserSettings->SetShadowQuality(QualityIndex);
-	UserSettings->SetAntiAliasingQuality(QualityIndex);
-	UserSettings->SetViewDistanceQuality(QualityIndex);
-	UserSettings->SetTextureQuality(QualityIndex);
-	UserSettings->SetViewDistanceQuality(QualityIndex);
-	UserSettings->SetShadingQuality(QualityIndex);
-	UserSettings->SetFoliageQuality(QualityIndex);
-
-	switch (QualityIndex)
+	if (QualityIndex < 0 || QualityIndex > 3)
 	{
-	case 0:
-		UserSettings->SetResolutionScaleNormalized(0.5f);
-		break;
-
-	case 1:
-		UserSettings->SetResolutionScaleNormalized(0.75f);
-		break;
-
-	case 2:
-		UserSettings->SetResolutionScaleNormalized(1.0f);
-		break;
+		return; 
 	}
+	
+	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
+
+	UserSettings->SetViewDistanceQuality(QualityIndex);
+	UserSettings->SetAntiAliasingQuality(QualityIndex);
+	UserSettings->SetPostProcessingQuality(QualityIndex);
+	UserSettings->SetShadowQuality(QualityIndex);
+	UserSettings->SetGlobalIlluminationQuality(QualityIndex);
+	UserSettings->SetReflectionQuality(QualityIndex);
+	UserSettings->SetTextureQuality(QualityIndex);
+	UserSettings->SetFoliageQuality(QualityIndex);
+	UserSettings->SetVisualEffectQuality(QualityIndex);
+	UserSettings->SetShadingQuality(QualityIndex);
 
 	UserSettings->ApplySettings(false);
 }
@@ -109,6 +104,19 @@ void USettingsMenuWidget::SetScreenMode(EWindowMode::Type ScreenMode)
 	UserSettings->ApplyResolutionSettings(false);
 }
 
+void USettingsMenuWidget::SetResolutionScale(const float Scale)
+{
+	if (Scale < 0.f || Scale > 1.0)
+	{
+		return;
+	}
+
+	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
+
+	UserSettings->SetResolutionScaleNormalized(Scale);
+	UserSettings->ApplySettings(false);
+}
+
 void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 {
 	if (!ButtonWidget)
@@ -129,6 +137,10 @@ void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 	else if (ButtonWidget == Button_Quality_High)
 	{
 		QualityIndex = 2;
+	}
+	else if (ButtonWidget == Button_Quality_Epic)
+	{
+		QualityIndex = 3;
 	}
 
 	SetQualitySettings(QualityIndex);
@@ -155,4 +167,14 @@ void USettingsMenuWidget::ApplyScreenMode(UButtonWidget* ButtonWidget)
 	ButtonWidget->SetIsEnabled(false);
 	CurrentScreenModeButton->SetIsEnabled(true);
 	CurrentScreenModeButton = ButtonWidget;
+}
+
+void USettingsMenuWidget::ApplyResolutionScale(const float Value)
+{
+	if (!IsValid(Slider_ResolutionScale))
+	{
+		return;
+	}
+
+	SetResolutionScale(Value);
 }

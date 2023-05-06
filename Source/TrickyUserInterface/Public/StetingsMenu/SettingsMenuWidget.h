@@ -8,6 +8,7 @@
 #include "SettingsMenuWidget.generated.h"
 
 class UButtonWidget;
+class USlider;
 
 /**
  * 
@@ -36,7 +37,13 @@ protected:
 	TObjectPtr<UButtonWidget> Button_Quality_High = nullptr;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	TObjectPtr<UButtonWidget> Button_Quality_Epic = nullptr;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	TObjectPtr<USlider> Slider_ResolutionScale = nullptr;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -44,6 +51,9 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static void SetScreenMode(EWindowMode::Type ScreenMode);
+
+	UFUNCTION(BlueprintCallable)
+	static void SetResolutionScale(const float Scale = 1.f);
 
 private:
 	UPROPERTY()
@@ -57,4 +67,7 @@ private:
 
 	UFUNCTION()
 	void ApplyScreenMode(UButtonWidget* ButtonWidget);
+
+	UFUNCTION()
+	void ApplyResolutionScale(const float Value);
 };
