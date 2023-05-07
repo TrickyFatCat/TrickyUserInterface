@@ -8,6 +8,7 @@
 
 class UButtonWidget;
 class USliderWidget;
+class USoundSliderWidget;
 
 /**
  * 
@@ -43,6 +44,9 @@ protected:
 	
 	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<USliderWidget> Slider_ResolutionScale = nullptr;
+	
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	TObjectPtr<USoundSliderWidget> Slider_MasterSound = nullptr;
 
 public:
 	UFUNCTION(BlueprintCallable)
