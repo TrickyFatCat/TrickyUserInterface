@@ -3,63 +3,75 @@
 #include "StetingsMenu/SettingsMenuWidget.h"
 
 #include "ButtonWidget.h"
-#include "Components/Slider.h"
 #include "GameFramework/GameUserSettings.h"
+#include "StetingsMenu/SliderWidget.h"
 
 
 void USettingsMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	Button_Quality_Low->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
-	Button_Quality_Medium->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
-	Button_Quality_High->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
-	Button_Quality_Epic->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
-	Slider_ResolutionScale->OnValueChanged.AddDynamic(this, &USettingsMenuWidget::ApplyResolutionScale);
-
 	const UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
 	const int32 QualityIndex = UserSettings->GetViewDistanceQuality();
 
-	switch (QualityIndex)
+	if (Slider_ResolutionScale)
 	{
-	case 0:
-		Button_Quality_Low->SetIsEnabled(false);
-		CurrentQualityButton = Button_Quality_Low;
-		break;
-
-	case 1:
-		Button_Quality_Medium->SetIsEnabled(false);
-		CurrentQualityButton = Button_Quality_Medium;
-		break;
-
-	case 2:
-		Button_Quality_High->SetIsEnabled(false);
-		CurrentQualityButton = Button_Quality_High;
-		break;
-
-	case 3:
-		Button_Quality_Epic->SetIsEnabled(false);
-		CurrentQualityButton = Button_Quality_Epic;
-		break;
+		Slider_ResolutionScale->OnValueChanged.AddDynamic(this, &USettingsMenuWidget::ApplyResolutionScale);
+		Slider_ResolutionScale->SetValue(UserSettings->GetResolutionScaleNormalized());
 	}
 
-	Button_ScreenMode_Window->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
-	Button_ScreenMode_Full->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
-
-	const EWindowMode::Type WindowMode = UserSettings->GetDefaultWindowMode();
-	
-	switch (WindowMode)
+	if (Button_Quality_Low && Button_Quality_Medium && Button_Quality_High && Button_Quality_Epic)
 	{
-	case EWindowMode::Fullscreen:
-	case EWindowMode::WindowedFullscreen:
-		Button_ScreenMode_Full->SetIsEnabled(false);
-		CurrentScreenModeButton = Button_ScreenMode_Full;
-		break;
+		Button_Quality_Low->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
+		Button_Quality_Medium->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
+		Button_Quality_High->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
+		Button_Quality_Epic->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyQuality);
 
-	case EWindowMode::Windowed:
-		Button_ScreenMode_Window->SetIsEnabled(false);
-		CurrentScreenModeButton = Button_ScreenMode_Window;
-		break;
+		switch (QualityIndex)
+		{
+		case 0:
+			Button_Quality_Low->SetIsEnabled(false);
+			CurrentQualityButton = Button_Quality_Low;
+			break;
+
+		case 1:
+			Button_Quality_Medium->SetIsEnabled(false);
+			CurrentQualityButton = Button_Quality_Medium;
+			break;
+
+		case 2:
+			Button_Quality_High->SetIsEnabled(false);
+			CurrentQualityButton = Button_Quality_High;
+			break;
+
+		case 3:
+			Button_Quality_Epic->SetIsEnabled(false);
+			CurrentQualityButton = Button_Quality_Epic;
+			break;
+		}
+	}
+
+	if (Button_ScreenMode_Window && Button_ScreenMode_Full)
+	{
+		Button_ScreenMode_Window->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
+		Button_ScreenMode_Full->OnButtonClicked.AddDynamic(this, &USettingsMenuWidget::ApplyScreenMode);
+
+
+		const EWindowMode::Type WindowMode = UserSettings->GetDefaultWindowMode();
+
+		switch (WindowMode)
+		{
+		case EWindowMode::Fullscreen:
+		case EWindowMode::WindowedFullscreen:
+			Button_ScreenMode_Full->SetIsEnabled(false);
+			CurrentScreenModeButton = Button_ScreenMode_Full;
+			break;
+
+		case EWindowMode::Windowed:
+			Button_ScreenMode_Window->SetIsEnabled(false);
+			CurrentScreenModeButton = Button_ScreenMode_Window;
+			break;
+		}
 	}
 }
 
@@ -67,9 +79,9 @@ void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
 {
 	if (QualityIndex < 0 || QualityIndex > 3)
 	{
-		return; 
+		return;
 	}
-	
+
 	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
 
 	UserSettings->SetViewDistanceQuality(QualityIndex);
@@ -90,7 +102,7 @@ void USettingsMenuWidget::SetScreenMode(EWindowMode::Type ScreenMode)
 {
 	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
 	UserSettings->SetFullscreenMode(ScreenMode);
-	
+
 	FIntPoint DesktopResolution = UserSettings->GetDesktopResolution();
 
 	if (ScreenMode == EWindowMode::Windowed)
@@ -98,7 +110,7 @@ void USettingsMenuWidget::SetScreenMode(EWindowMode::Type ScreenMode)
 		DesktopResolution.X *= 0.75;
 		DesktopResolution.Y *= 0.75;
 	}
-	
+
 	UserSettings->SetScreenResolution(DesktopResolution);
 	UserSettings->ApplySettings(false);
 	UserSettings->ApplyResolutionSettings(false);

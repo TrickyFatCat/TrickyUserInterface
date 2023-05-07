@@ -4,11 +4,10 @@
 
 #include "CoreMinimal.h"
 #include "BaseUserWidget.h"
-#include "ButtonWidget.h"
 #include "SettingsMenuWidget.generated.h"
 
 class UButtonWidget;
-class USlider;
+class USliderWidget;
 
 /**
  * 
@@ -21,29 +20,29 @@ class TRICKYUSERINTERFACE_API USettingsMenuWidget : public UBaseUserWidget
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_ScreenMode_Full = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_ScreenMode_Window = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quality_Low = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quality_Medium = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quality_High = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quality_Epic = nullptr;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	TObjectPtr<USlider> Slider_ResolutionScale = nullptr;
+	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
+	TObjectPtr<USliderWidget> Slider_ResolutionScale = nullptr;
 
 public:
 	UFUNCTION(BlueprintCallable)
