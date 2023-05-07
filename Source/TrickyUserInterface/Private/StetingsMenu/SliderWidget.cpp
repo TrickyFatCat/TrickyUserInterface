@@ -6,6 +6,19 @@
 #include "Components/Slider.h"
 #include "Components/TextBlock.h"
 
+void USliderWidget::NativePreConstruct()
+{
+	Super::NativePreConstruct();
+
+	if (Slider_Main)
+	{
+		Slider_Main->SetValue(InitialValue);
+		Slider_Main->SetMinValue(MinValue);
+		Slider_Main->SetMaxValue(MaxValue);
+		SetTextValue(InitialValue);
+	}
+}
+
 void USliderWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
