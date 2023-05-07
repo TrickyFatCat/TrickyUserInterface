@@ -22,7 +22,7 @@ void USoundSliderWidget::HandleValueChange_Implementation(const float Value)
 
 void USoundSliderWidget::SetSoundVolume(const float Value) const
 {
-	if (!SoundMix || SoundClass)
+	if (!SoundMix || !SoundClass)
 	{
 		return;
 	}
