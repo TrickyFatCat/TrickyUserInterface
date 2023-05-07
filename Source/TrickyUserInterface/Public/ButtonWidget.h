@@ -26,7 +26,7 @@ public:
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="ButtonWidget", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="ButtonWidget", meta=(BindWidget))
 	TObjectPtr<UButton> Button_Main = nullptr;
 
 private:

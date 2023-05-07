@@ -20,10 +20,10 @@ class TRICKYUSERINTERFACE_API USliderWidget : public UBaseUserWidget
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category="Slider", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="Slider", meta=(BindWidget))
 	TObjectPtr<USlider> Slider_Main = nullptr;
 	
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category="Slider", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="Slider", meta=(BindWidget))
 	TObjectPtr<UTextBlock> Text_Value = nullptr;
 
 	UFUNCTION()
