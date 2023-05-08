@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "BaseUserWidget.h"
-#include "FinishMenuWidget.generated.h"
+#include "WinMenuWidget.generated.h"
 
 class UButtonWidget;
 class UTransitionScreenWidget;
@@ -13,26 +13,26 @@ class UTransitionScreenWidget;
  * A widget for creation of a simple finish menu.
  */
 UCLASS(Abstract)
-class TRICKYUSERINTERFACE_API UFinishMenuWidget : public UBaseUserWidget
+class TRICKYUSERINTERFACE_API UWinMenuWidget : public UBaseUserWidget
 {
 	GENERATED_BODY()
 
 protected:
 	virtual void NativeConstruct() override;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Continue = nullptr;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Restart = nullptr;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 
 	UPROPERTY()
 	TObjectPtr<UButtonWidget> ClickedButton = nullptr;
 	
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
+	UPROPERTY(BlueprintReadOnly, Category="FinishScreen", meta=(BindWidget))
 	TObjectPtr<UTransitionScreenWidget> Widget_TransitionScreen = nullptr;
 
 	/**Called when any button clicked.*/
@@ -71,7 +71,7 @@ protected:
 	 *Called when the transition screen finishes its show animation.
 	 */
 	UFUNCTION(BlueprintNativeEvent, Category="FinishScreen")
-	void OnTransitionScreenShowed();
+	void HandleTransitionShowed();
 
-	virtual void OnTransitionScreenShowed_Implementation();
+	virtual void HandleTransitionShowed_Implementation();
 };
