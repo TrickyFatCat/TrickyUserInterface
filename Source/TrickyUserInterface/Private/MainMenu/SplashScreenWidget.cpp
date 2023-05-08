@@ -22,7 +22,7 @@ void USplashScreenWidget::NativeConstruct()
 		return;
 	}
 
-	Image_Slash->SetBrushFromTexture(SplashImages[CurrentSplashIndex], true);
+	Image_Splash->SetBrushFromTexture(SplashImages[CurrentSplashIndex], true);
 	Widget_TransitionScreen->Hide();
 }
 
@@ -54,7 +54,7 @@ void USplashScreenWidget::SwitchSplashScreen()
 	
 	if (Texture)
 	{
-		Image_Slash->SetBrushFromTexture(ToRawPtr(Texture), true);
+		Image_Splash->SetBrushFromTexture(ToRawPtr(Texture), true);
 		OnSplashChanged.Broadcast(CurrentSplashIndex);
 	}
 	else

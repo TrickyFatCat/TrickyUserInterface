@@ -38,7 +38,7 @@ protected:
 	TObjectPtr<UTransitionScreenWidget> Widget_TransitionScreen;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="SplashScreen", meta=(BindWidget))
-	TObjectPtr<UImage> Image_Slash = nullptr;
+	TObjectPtr<UImage> Image_Splash = nullptr;
 
 	/**An array of transition screens to show.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="SplashScreen")
