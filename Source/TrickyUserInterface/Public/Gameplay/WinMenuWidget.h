@@ -29,7 +29,7 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="WinMenu", meta=(BindWidget))
 	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category="WinMenu")
 	TObjectPtr<UButtonWidget> ClickedButton = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category="WinMenu", meta=(BindWidget))
