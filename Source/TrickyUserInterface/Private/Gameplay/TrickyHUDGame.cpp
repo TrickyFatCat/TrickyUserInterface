@@ -16,6 +16,7 @@ void ATrickyHUDGame::BeginPlay()
 	CreateUserWidget(EGameModeState::Pause, PauseScreenWidget);
 	CreateUserWidget(EGameModeState::Win, WinScreenWidget);
 	CreateUserWidget(EGameModeState::Lose, LoseScreenWidget);
+	CreateUserWidget(EGameModeState::Transition, TransitionScreenWidget);
 
 	
 	for (const auto WidgetPair : UserWidgets)

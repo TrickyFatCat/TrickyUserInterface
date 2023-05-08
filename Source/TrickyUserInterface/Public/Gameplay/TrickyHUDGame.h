@@ -43,6 +43,10 @@ protected:
 	/**A widget which will be shown in the lose game state.*/
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> LoseScreenWidget = nullptr;
+	
+	/**A widget which will be shown in the transition game state.*/
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
+	TSubclassOf<UBaseUserWidget> TransitionScreenWidget = nullptr;
 private:
 	UPROPERTY()
 	TMap<EGameModeState, TObjectPtr<UBaseUserWidget>> UserWidgets;
