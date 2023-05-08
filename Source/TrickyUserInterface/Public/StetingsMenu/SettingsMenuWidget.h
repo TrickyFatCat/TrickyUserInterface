@@ -40,9 +40,6 @@ protected:
 	TObjectPtr<UButtonWidget> Button_Quality_Epic = nullptr;
 
 	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
-	TObjectPtr<UButtonWidget> Button_Quit = nullptr;
-	
-	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<USliderWidget> Slider_ResolutionScale = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
