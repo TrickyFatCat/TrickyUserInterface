@@ -10,7 +10,7 @@
 class UTextBlock;
 
 /**
- * 
+ * A slider with a text.
  */
 UCLASS()
 class TRICKYUSERINTERFACE_API USliderWidget : public UBaseUserWidget
@@ -31,24 +31,30 @@ protected:
 	UFUNCTION()
 	void ChangeValue(const float Value);
 
+	/**Called when the value changed*/
 	UFUNCTION(BlueprintNativeEvent, Category="Slider")
 	void HandleValueChange(const float Value);
 
 	virtual void HandleValueChange_Implementation(const float Value);
 	
 public:
+	/**Called when the value changed*/
 	UPROPERTY(BlueprintAssignable)
 	FOnFloatValueChangedEvent OnValueChanged;
-
+	
+	/**Initial value of the slider*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Slider")
 	float InitialValue = 1.0;
 
+	/**Minimum value of the slider*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Slider")
 	float MinValue = 0.0;
-	
+
+	/**Maximum value of the slider*/
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="Slider")
 	float MaxValue = 1.0;
-	
+
+	/**Sets value of the slider*/
 	UFUNCTION(BlueprintCallable, Category="Slider")
 	void SetValue(const float Value);
 

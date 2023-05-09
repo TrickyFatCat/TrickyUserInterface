@@ -11,7 +11,7 @@ class USliderWidget;
 class USoundSliderWidget;
 
 /**
- * 
+ * A basic settings menu for a game
  */
 UCLASS()
 class TRICKYUSERINTERFACE_API USettingsMenuWidget : public UBaseUserWidget
@@ -46,13 +46,13 @@ protected:
 	TObjectPtr<USoundSliderWidget> Slider_MasterSound = nullptr;
 
 public:
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Settings")
 	static void SetQualitySettings(const int32 QualityIndex);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Settings")
 	static void SetScreenMode(EWindowMode::Type ScreenMode);
 
-	UFUNCTION(BlueprintCallable)
+	UFUNCTION(BlueprintCallable, Category="Settings")
 	static void SetResolutionScale(const float Scale = 1.f);
 
 private:

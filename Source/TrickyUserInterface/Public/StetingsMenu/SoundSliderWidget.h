@@ -10,7 +10,7 @@ class USoundClass;
 class USoundMix;
 
 /**
- * 
+ * A slider widget created specifically to control sound volume in options
  */
 UCLASS()
 class TRICKYUSERINTERFACE_API USoundSliderWidget : public USliderWidget
