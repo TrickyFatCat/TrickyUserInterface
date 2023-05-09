@@ -10,7 +10,7 @@ class UButtonWidget;
 class UTransitionScreenWidget;
 
 /**
- * 
+ * A widget for creation of a simple lose menu.
  */
 UCLASS()
 class TRICKYUSERINTERFACE_API ULoseMenuWidget : public UBaseUserWidget
