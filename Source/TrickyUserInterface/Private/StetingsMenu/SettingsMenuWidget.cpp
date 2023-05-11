@@ -3,6 +3,7 @@
 #include "StetingsMenu/SettingsMenuWidget.h"
 
 #include "ButtonWidget.h"
+#include "TrickyUserInterfaceLibrary.h"
 #include "GameFramework/GameUserSettings.h"
 #include "StetingsMenu/SliderWidget.h"
 
@@ -75,60 +76,6 @@ void USettingsMenuWidget::NativeConstruct()
 	}
 }
 
-void USettingsMenuWidget::SetQualitySettings(const int32 QualityIndex)
-{
-	if (QualityIndex < 0 || QualityIndex > 3)
-	{
-		return;
-	}
-
-	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-
-	UserSettings->SetViewDistanceQuality(QualityIndex);
-	UserSettings->SetAntiAliasingQuality(QualityIndex);
-	UserSettings->SetPostProcessingQuality(QualityIndex);
-	UserSettings->SetShadowQuality(QualityIndex);
-	UserSettings->SetGlobalIlluminationQuality(QualityIndex);
-	UserSettings->SetReflectionQuality(QualityIndex);
-	UserSettings->SetTextureQuality(QualityIndex);
-	UserSettings->SetFoliageQuality(QualityIndex);
-	UserSettings->SetVisualEffectQuality(QualityIndex);
-	UserSettings->SetShadingQuality(QualityIndex);
-
-	UserSettings->ApplySettings(false);
-}
-
-void USettingsMenuWidget::SetScreenMode(EWindowMode::Type ScreenMode)
-{
-	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-	UserSettings->SetFullscreenMode(ScreenMode);
-
-	FIntPoint DesktopResolution = UserSettings->GetDesktopResolution();
-
-	if (ScreenMode == EWindowMode::Windowed)
-	{
-		DesktopResolution.X *= 0.75;
-		DesktopResolution.Y *= 0.75;
-	}
-
-	UserSettings->SetScreenResolution(DesktopResolution);
-	UserSettings->ApplySettings(false);
-	UserSettings->ApplyResolutionSettings(false);
-}
-
-void USettingsMenuWidget::SetResolutionScale(const float Scale)
-{
-	if (Scale < 0.f || Scale > 1.0)
-	{
-		return;
-	}
-
-	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
-
-	UserSettings->SetResolutionScaleNormalized(Scale);
-	UserSettings->ApplySettings(false);
-}
-
 void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 {
 	if (!ButtonWidget)
@@ -155,7 +102,7 @@ void USettingsMenuWidget::ApplyQuality(UButtonWidget* ButtonWidget)
 		QualityIndex = 3;
 	}
 
-	SetQualitySettings(QualityIndex);
+	UTrickyUserInterfaceLibrary::SetQualitySettings(QualityIndex);
 	ButtonWidget->SetIsEnabled(false);
 	CurrentQualityButton->SetIsEnabled(true);
 	CurrentQualityButton = ButtonWidget;
@@ -175,7 +122,7 @@ void USettingsMenuWidget::ApplyScreenMode(UButtonWidget* ButtonWidget)
 		WindowMode = EWindowMode::Windowed;
 	}
 
-	SetScreenMode(WindowMode);
+	UTrickyUserInterfaceLibrary::SetScreenMode(WindowMode);
 	ButtonWidget->SetIsEnabled(false);
 	CurrentScreenModeButton->SetIsEnabled(true);
 	CurrentScreenModeButton = ButtonWidget;
@@ -188,5 +135,5 @@ void USettingsMenuWidget::ApplyResolutionScale(const float Value)
 		return;
 	}
 
-	SetResolutionScale(Value);
+	UTrickyUserInterfaceLibrary::SetResolutionScale(Value);
 }

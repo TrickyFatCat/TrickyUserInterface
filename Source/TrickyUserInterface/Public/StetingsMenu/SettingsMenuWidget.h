@@ -45,17 +45,6 @@ protected:
 	UPROPERTY(BlueprintReadOnly, Category="SetittingsMenu", meta=(BindWidget))
 	TObjectPtr<USoundSliderWidget> Slider_MasterSound = nullptr;
 
-public:
-	UFUNCTION(BlueprintCallable, Category="Settings")
-	static void SetQualitySettings(const int32 QualityIndex);
-
-	UFUNCTION(BlueprintCallable, Category="Settings")
-	static void SetScreenMode(EWindowMode::Type ScreenMode);
-
-	UFUNCTION(BlueprintCallable, Category="Settings")
-	static void SetResolutionScale(const float Scale = 1.f);
-
-private:
 	UPROPERTY()
 	TObjectPtr<UButtonWidget> CurrentQualityButton = nullptr;
 
