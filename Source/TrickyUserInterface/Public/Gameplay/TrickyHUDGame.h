@@ -48,10 +48,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category="HUD")
 	TSubclassOf<UBaseUserWidget> TransitionScreenWidget = nullptr;
 private:
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category="HUD", meta=(AllowPrivateAccess))
 	TMap<EGameModeState, TObjectPtr<UBaseUserWidget>> UserWidgets;
 
-	UPROPERTY()
+	UPROPERTY(BlueprintReadOnly, Category="HUD", meta=(AllowPrivateAccess))
 	TObjectPtr<UBaseUserWidget> ActiveWidget = nullptr;
 
 	UFUNCTION()
