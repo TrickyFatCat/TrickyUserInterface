@@ -36,5 +36,8 @@ public:
 	static void SetResolutionScale(const float Scale = 1.f);
 
 	UFUNCTION(BlueprintPure, Category="TrickyUserInterface")
+	static void SetResolution(const int32 Width, const int32 Height);
+	
+	UFUNCTION(BlueprintPure, Category="TrickyUserInterface")
 	static FString ConvertTimeSeconds(const float TimeSeconds, const ETimeFormat TimeFormat);
 };

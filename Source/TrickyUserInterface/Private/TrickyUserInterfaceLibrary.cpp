@@ -60,6 +60,14 @@ void UTrickyUserInterfaceLibrary::SetResolutionScale(const float Scale)
 	UserSettings->ApplySettings(false);
 }
 
+void UTrickyUserInterfaceLibrary::SetResolution(const int32 Width, const int32 Height)
+{
+	UGameUserSettings* UserSettings = UGameUserSettings::GetGameUserSettings();
+	const FIntPoint Resolution{Width, Height};
+	UserSettings->SetScreenResolution(Resolution);
+	UserSettings->ApplyResolutionSettings(false);
+}
+
 FString UTrickyUserInterfaceLibrary::ConvertTimeSeconds(const float TimeSeconds, const ETimeFormat TimeFormat)
 {
 	const FTimespan Timespan = UKismetMathLibrary::FromSeconds(TimeSeconds);
