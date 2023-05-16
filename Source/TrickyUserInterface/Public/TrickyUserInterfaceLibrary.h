@@ -7,7 +7,7 @@
 #include "TrickyUserInterfaceLibrary.generated.h"
 
 UENUM(BlueprintType)
-enum class ETimeFormat : uint8
+enum class EFormatTime : uint8
 {
 	MM_SS_MsMs UMETA(DisplayName="MM:SS.MsMs"),
 	MM_SS_Ms UMETA(DisplayName="MM:SS.Ms"),
@@ -44,5 +44,5 @@ public:
 
 	/**Converts given time in seconds to a chosen format*/
 	UFUNCTION(BlueprintPure, Category="TrickyUserInterface")
-	static FString ConvertTimeSeconds(const float TimeSeconds, const ETimeFormat TimeFormat);
+	static FString ConvertTimeSeconds(const float TimeSeconds, const EFormatTime TimeFormat);
 };

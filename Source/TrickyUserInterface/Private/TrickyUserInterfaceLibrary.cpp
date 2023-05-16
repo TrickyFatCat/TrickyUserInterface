@@ -68,7 +68,7 @@ void UTrickyUserInterfaceLibrary::SetResolution(const int32 Width, const int32 H
 	UserSettings->ApplyResolutionSettings(false);
 }
 
-FString UTrickyUserInterfaceLibrary::ConvertTimeSeconds(const float TimeSeconds, const ETimeFormat TimeFormat)
+FString UTrickyUserInterfaceLibrary::ConvertTimeSeconds(const float TimeSeconds, const EFormatTime TimeFormat)
 {
 	const FTimespan Timespan = UKismetMathLibrary::FromSeconds(TimeSeconds);
 
@@ -86,33 +86,33 @@ FString UTrickyUserInterfaceLibrary::ConvertTimeSeconds(const float TimeSeconds,
 
 	switch (TimeFormat)
 	{
-	case ETimeFormat::MM_SS_MsMs:
+	case EFormatTime::MM_SS_MsMs:
 		Result = FString::Printf(TEXT("%02d:%02d.%02d"),
 		                         TotalMinutes,
 		                         Seconds,
 		                         ConvertMilliseconds(0.1f));
 		break;
 
-	case ETimeFormat::MM_SS_Ms:
+	case EFormatTime::MM_SS_Ms:
 		Result = FString::Printf(TEXT("%02d:%02d.%d"),
 		                         TotalMinutes,
 		                         Seconds,
 		                         ConvertMilliseconds(0.01f));
 		break;
 
-	case ETimeFormat::MM_SS:
+	case EFormatTime::MM_SS:
 		Result = FString::Printf(TEXT("%02d:%02d"), TotalMinutes, Seconds);
 		break;
 
-	case ETimeFormat::SS_MsMs:
+	case EFormatTime::SS_MsMs:
 		Result = FString::Printf(TEXT("%02d.%02d"), TotalSeconds, ConvertMilliseconds(0.1f));
 		break;
 
-	case ETimeFormat::SS_Ms:
+	case EFormatTime::SS_Ms:
 		Result = FString::Printf(TEXT("%02d.%d"), TotalSeconds, ConvertMilliseconds(0.01f));
 		break;
 
-	case ETimeFormat::SS:
+	case EFormatTime::SS:
 		Result = FString::Printf(TEXT("%02d"), TotalSeconds);
 		break;
 	}
