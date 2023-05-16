@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category="TrickyUserInterface")
 	static void SetResolutionScale(const float Scale = 1.f);
 
-	UFUNCTION(BlueprintPure, Category="TrickyUserInterface")
+	UFUNCTION(BlueprintCallable, Category="TrickyUserInterface")
 	static void SetResolution(const int32 Width, const int32 Height);
 	
 	UFUNCTION(BlueprintPure, Category="TrickyUserInterface")
