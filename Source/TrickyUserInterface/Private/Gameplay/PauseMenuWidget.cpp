@@ -11,15 +11,25 @@ void UPauseMenuWidget::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	auto BindButtonEvent = [&](UButtonWidget* ButtonWidget)
+	if (Button_Resume)
 	{
-		ButtonWidget->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
-	};
+		Button_Resume->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
+	}
 
-	BindButtonEvent(ToRawPtr(Button_Resume));
-	BindButtonEvent(ToRawPtr(Button_Restart));
-	BindButtonEvent(ToRawPtr(Button_Quit));
-	Widget_TransitionScreen->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
+	if (Button_Restart)
+	{
+		Button_Restart->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
+	}
+
+	if (Button_Quit)
+	{
+		Button_Quit->OnButtonClicked.AddDynamic(this, &UPauseMenuWidget::OnButtonClick);
+	}
+
+	if (Widget_TransitionScreen)
+	{
+		Widget_TransitionScreen->OnShowed.AddDynamic(this, &UPauseMenuWidget::TransitionScreenShowed);
+	}
 }
 
 void UPauseMenuWidget::OnButtonClick_Implementation(UButtonWidget* Button)
@@ -27,7 +37,7 @@ void UPauseMenuWidget::OnButtonClick_Implementation(UButtonWidget* Button)
 	if (Button == Button_Resume)
 	{
 		Hide();
-		UGameplayStatics::SetGamePaused(this,false);
+		UGameplayStatics::SetGamePaused(this, false);
 	}
 	else if (Button == Button_Restart || Button == Button_Quit)
 	{
